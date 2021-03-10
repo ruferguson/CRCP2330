@@ -16,14 +16,12 @@ CHIP PC {
     OUT out[16];
 
     PARTS:
-    Mux16(a = in, sel = reset, out = resetOut);
-    Not16(in = resetOut, out = notResetOut);
-
-    Register(in = in, load = load, out = out);
 
     Inc16(in = in, out = incOut);
 
+    Mux16(a = incOut, sel = inc, out = incMuxOut);
+    Mux16(a = in, b = incMuxOut, sel = load, out = loadMuxOut);
+    Mux16(a = false, b = loadMuxOut, sel = reset, out = resetMuxOut);
 
-    DMux4Way();
-
+    Register(in = resetMuxOut, load = load, out = out);
 }
