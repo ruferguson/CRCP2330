@@ -20,4 +20,10 @@ CHIP PC {
     Not16(in = resetOut, out = notResetOut);
 
     Register(in = in, load = load, out = out);
+
+    Inc16(in = in, out = incOut);
+
+
+    DMux4Way();
+
 }
