@@ -14,5 +14,21 @@ CHIP Register {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    Mux16(a = elseOut, b = in[16], sel = load, out = muxOut[16]);
+    DFF(in = muxOut[0], out = elseOut, out = out[0]);
+    DFF(in = muxOut[1], out = elseOut, out = out[1]);
+    DFF(in = muxOut[2], out = elseOut, out = out[2]);
+    DFF(in = muxOut[3], out = elseOut, out = out[3]);
+    DFF(in = muxOut[4], out = elseOut, out = out[4]);
+    DFF(in = muxOut[5], out = elseOut, out = out[5]);
+    DFF(in = muxOut[6], out = elseOut, out = out[6]);
+    DFF(in = muxOut[7], out = elseOut, out = out[7]);
+    DFF(in = muxOut[8], out = elseOut, out = out[8]);
+    DFF(in = muxOut[9], out = elseOut, out = out[9]);
+    DFF(in = muxOut[10], out = elseOut, out = out[10]);
+    DFF(in = muxOut[11], out = elseOut, out = out[11]);
+    DFF(in = muxOut[12], out = elseOut, out = out[12]);
+    DFF(in = muxOut[13], out = elseOut, out = out[13]);
+    DFF(in = muxOut[14], out = elseOut, out = out[14]);
+    DFF(in = muxOut[15], out = elseOut, out = out[15]);
 }
