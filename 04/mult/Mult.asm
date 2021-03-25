@@ -28,3 +28,20 @@ M = D
 D = A
 @b
 M = D
+
+/* pseudo code for while
+   sum = 0;
+   i = 1;
+   (WHILE1)
+      if (i - 10 >= 0) goto ENDWHILE1
+      sum = sum + i;
+      i = i + 1;
+      jump to WHILE1
+   (ENDWHILE1)
+*/
+
+@sum
+M = 0
+@i
+M = 1
+
