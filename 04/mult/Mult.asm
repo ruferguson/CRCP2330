@@ -31,11 +31,11 @@ M = D
 
 /* pseudo code for while
    sum = 0;
-   i = 1;
+   i = 10;
    (WHILE1)
-      if (i - 10 >= 0) goto ENDWHILE1
+      if (i >= 0) goto ENDWHILE1
       sum = sum + i;
-      i = i + 1;
+      i = --;
       jump to WHILE1
    (ENDWHILE1)
 */
@@ -44,4 +44,6 @@ M = D
 M = 0
 @i
 M = 1
+(WHILE)
+
 
