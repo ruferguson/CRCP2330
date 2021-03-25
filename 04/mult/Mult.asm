@@ -9,4 +9,22 @@
 // This program only needs to handle arguments that satisfy
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
-// Put your code here.
+// pseudo code
+// a = R0
+// b = R1
+// while(a > 0){
+//   R2 = R2 + b
+//   a --
+// }
+
+// set a = R0
+@R0
+D = A
+@a
+M = D 
+
+// set b = R1
+@R1
+D = A
+@b
+M = D
