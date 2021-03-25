@@ -9,13 +9,16 @@
 // This program only needs to handle arguments that satisfy
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
-// pseudo code
-// a = R0
-// b = R1
-// while(a > 0){
-//   R2 = R2 + b
-//   a --
-// }
+/* pseudo code
+   a = R0
+   b = R1
+   (WHILE1)
+      if (a > 0) goto ENDWHILE1
+     R2 = R2 + b
+     a --
+   jump to WHILE1
+   (ENDWHILE1)
+*/
 
 // set a = R0
 @R0
@@ -29,21 +32,17 @@ D = A
 @b
 M = D
 
-/* pseudo code for while
-   sum = 0;
-   i = 10;
-   (WHILE1)
-      if (i >= 0) goto ENDWHILE1
-      sum = sum + i;
-      i = --;
-      jump to WHILE1
-   (ENDWHILE1)
-*/
-
 @sum
 M = 0
-@i
-M = 1
+
 (WHILE)
+@ENDWHILE
+D;JGT
+
+@WHILE
+D;JLE
+(ENDWHILE)
+
+
 
 
