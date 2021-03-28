@@ -21,11 +21,9 @@ D = M
 @b
 M = D
 
-// set sum to 0
-@0
-D = A
-@sum
-M = D
+// set R2 to 0
+@R2
+M = 0
 
 (WHILE)
 
@@ -38,7 +36,7 @@ D;JLE
 // R2 = R2 + b
 @b
 D = M
-@sum
+@R2
 M = M + D
 
 // a --
