@@ -11,68 +11,66 @@
 // "white" in every pixel;
 // the screen should remain fully clear as long as no key is pressed.
 
-// pseudocode
-// if (keyPressed) goto BLACK
-// else goto WHITE
+(STARTOVER) // reset to start
 
-(STARTOVER)
-
-@SCREEN
+@SCREEN 	// start screen in RAM0
 D = A
-@addr
+@0
 M = D
+
+
 
 (KEYCHECK)
 
 @KBD
 D = M
 
-// go to BLACK if key pressed
-@BLACK
+@BLACK 		// go to BLACK if key pressed
 D; JGT
 
-// go to WHITE if no key pressed
-@WHITE
+@WHITE 		// go to WHITE if no key pressed
 D;JEQ
 
-//(continuously loop)
-@KEYCHECK
+@KEYCHECK	//(continuously loop)
 0;JMP
 
+
+
 (BLACK)
-@1
-M = -1
+@R1
+M = -1		// -1 = 11111111111111
 @FILL
 0;JMP
 
 (WHITE)
-@1
+@R1
 M = 0
 @FILL
 0;JMP
 
+
+
 (FILL)
-@1
+@R1
 D = M
 
-// start at first pixel
-@0
+@R0 		// get pixel address
 A = M
 // fill it
 M = D 
 
-@0
-D = M + 1 // next pixel
+@R0
+D = M + 1
 @KBD
 D = A - D
 
-@0
-M = M + 1 // next pixel
+@R0
+M = M + 1
 A = M
 
 @FILL
 D;JGT
 
-@STARTOVER
+@STARTOVER 	// reset to start
 0;JMP
 
