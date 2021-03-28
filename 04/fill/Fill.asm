@@ -15,6 +15,8 @@
 // if (keyPressed) goto BLACK
 // else goto WHITE
 
+(STARTOVER)
+
 @SCREEN
 D = A
 @addr
@@ -40,7 +42,35 @@ D;JEQ
 (BLACK)
 @1
 M = -1
+@FILL
+0;JMP
 
 (WHITE)
 @1
 M = 0
+@FILL
+0;JMP
+
+(FILL)
+@1
+D = M
+
+// start at first pixel
+@0
+A = M
+// fill it
+M = D 
+
+@0
+D = M + 1 // next pixel
+
+@0
+M = M + 1 // next pixel
+A = M
+
+@FILL
+D;JGT
+
+@STARTOVER
+0;JMP
+
