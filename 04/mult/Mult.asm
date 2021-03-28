@@ -50,7 +50,3 @@ M = M - D
 0;JMP
 
 (ENDWHILE)
-
-
-
-
