@@ -22,13 +22,15 @@ D = M
 M = D
 
 // set sum to 0
+@0
+D = A
 @sum
-M = 0
+M = D
 
 (WHILE)
 
 // if (a < 0) goto ENDWHILE1
-@sum
+@a
 D = M
 @ENDWHILE
 D;JLE
@@ -40,14 +42,14 @@ D = M
 M = M + D
 
 // a --
+@1
+D = A
 @a
-M = M - 1
+M = M - D
 
 // jump to WHILE
-@a
-D = M
 @WHILE
-D;JGT
+0;JMP
 
 (ENDWHILE)
 
