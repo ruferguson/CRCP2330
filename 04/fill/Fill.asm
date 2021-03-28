@@ -63,6 +63,8 @@ M = D
 
 @0
 D = M + 1 // next pixel
+@KEYCHECK
+D = A - D
 
 @0
 M = M + 1 // next pixel
