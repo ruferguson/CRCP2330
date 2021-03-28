@@ -9,47 +9,48 @@
 // This program only needs to handle arguments that satisfy
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
-// pseudo code
-//   a = R0
-//   b = R1
-//   (WHILE1)
-//    if (a > 0) goto ENDWHILE1
-//       R2 = R2 + b
+
 //       a --
-//       jump to WHILE1
 //   (ENDWHILE1)
 
 // set a = R0
 @R0
-D = A
+D = M
 @a
 M = D 
 
 // set b = R1
 @R1
-D = A
+D = M
 @b
 M = D
 
+// set sum to 0
 @sum
 M = 0
 
 (WHILE)
+
+// if (a < 0) goto ENDWHILE1
 @sum
 D = M
 @ENDWHILE
-D;JGT
+D;JLE
 
+// R2 = R2 + b
 @b
 D = M
 @sum
 M = M + D
 
 @sum
-M=M+1
+M = M - 1
 
+// jump to WHILE
+@a
+D = M
 @WHILE
-D;JLE
+D;JGT
 
 (ENDWHILE)
 
