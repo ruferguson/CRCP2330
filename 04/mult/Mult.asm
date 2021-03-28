@@ -9,10 +9,6 @@
 // This program only needs to handle arguments that satisfy
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
-
-//       a --
-//   (ENDWHILE1)
-
 // set a = R0
 @R0
 D = M
@@ -21,7 +17,7 @@ M = D
 
 // set b = R1
 @R1
-D = M
+D = M 
 @b
 M = D
 
@@ -43,7 +39,8 @@ D = M
 @sum
 M = M + D
 
-@sum
+// a --
+@a
 M = M - 1
 
 // jump to WHILE
