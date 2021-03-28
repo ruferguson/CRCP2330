@@ -11,4 +11,10 @@
 // "white" in every pixel;
 // the screen should remain fully clear as long as no key is pressed.
 
-// Put your code here.
+// pseudocode
+// if (keyPressed) goto BLACK
+// else goto WHITE
+
+addr = SCREEN
+n = RAM[0]
+i = 0
