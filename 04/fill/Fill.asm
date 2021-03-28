@@ -24,7 +24,7 @@ M = D
 
 (KEYCHECK)
 
-@KEYPRESSED
+@KBD
 D = M
 
 // go to BLACK if key pressed
@@ -63,7 +63,7 @@ M = D
 
 @0
 D = M + 1 // next pixel
-@KEYCHECK
+@KBD
 D = A - D
 
 @0
