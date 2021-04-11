@@ -28,9 +28,10 @@ CHIP Memory {
 
     PARTS:
     
-    DMux4Way(in = load, sel = , a = ram, b = rram,c = screen, d = keyboard);
-
+    DMux4Way(in = load, sel = address, a = ram, b = rram,c = screen, d = keyboard);
+    Or();
+    RAM16K();
     Screen();
     Keyboard();
-
+    Mux4Way();
 }
