@@ -27,5 +27,10 @@ CHIP Memory {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    
+    DMux4Way(in = load, sel = , a = ram, b = rram,c = screen, d = keyboard);
+
+    Screen();
+    Keyboard();
+
 }
