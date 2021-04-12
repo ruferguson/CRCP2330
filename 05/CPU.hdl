@@ -46,7 +46,7 @@ CHIP CPU {
     ARegister(in = topMuxOut, load = insertA, out = A, out[0..14] = addressM);
 
     And(a = instruction[15], b = instruction[12], out = AMSelect);
-    Mux16(a = instruction, b = inM, sel = AMSelect, out = AM);
+    Mux16(a = A, b = inM, sel = AMSelect, out = AM);
 
     And(a = instruction[15], b = instruction[4], out = insertD);
     DRegister(in = aluOut, load = insertD, out = D);
@@ -59,7 +59,7 @@ CHIP CPU {
     Not(in = zrOut, out = nzr);
     And(a = instruction[15], b = instruction[0], out = jgt);
     And(a = nng, b = nzr, out = nngnzr);
-    And(a = jgt, b = nzr, out = load1);
+    And(a = jgt, b = nngnzr, out = load1);
 
     And(a = instruction[15], b = instruction[1], out = jeq);
     And(a = jeq, b = zrOut, out = load2);
