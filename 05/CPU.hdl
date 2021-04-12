@@ -51,7 +51,7 @@ CHIP CPU {
     And(a = instruction[15], b = instruction[4], out = insertD);
     DRegister(in = aluOut, load = insertD, out = D);
 
-    ALU(x = A, y = AM, zx = instruction[11], nx = instruction[10], zy = instruction[9], ny = instruction[8], f = instruction[7], no = instruction[6], out = aluOut, zr = zrOut, ng = ngOut);
+    ALU(x = D, y = AM, zx = instruction[11], nx = instruction[10], zy = instruction[9], ny = instruction[8], f = instruction[7], no = instruction[6], out = aluOut, out = outM, zr = zrOut, ng = ngOut);
 
     And(a = instruction[15], b = instruction[3], out = writeM);
 
