@@ -42,29 +42,29 @@ CHIP CPU {
     Not(in = instruction[15], out = notFirst);
     Mux16(a = instruction, b = instruction, sel = notFirst, out = topMuxOut);
 
-    Or(a = notFirst, b = instruction[0], out = insertA);
+    Or(a = notFirst, b = instruction[5], out = insertA);
     ARegister(in = topMuxOut, load = insertA, out = A, out[0..14] = addressM);
 
-    And(a = instruction[15], b = instruction[0], out = AMSelect);
+    And(a = instruction[15], b = instruction[12], out = AMSelect);
     Mux16(a = instruction, b = inM, sel = AMSelect, out = AM);
 
-    And(a = instruction[15], b = instruction[3], out = insertD);
+    And(a = instruction[15], b = instruction[4], out = insertD);
     DRegister(in = instruction, load = insertD, out = D);
 
     ALU(x = A, y = D, zx = instruction[0], nx = instruction[1], zy = instruction[2], ny = instruction[3], f = instruction[4], no = instruction[5], out = aluOut, zr = zrOut, ng = ngOut);
 
-    And(a = instruction[3], b = instruction[15], out = writeM);
+    And(a = instruction[15], b = instruction[3], out = writeM);
 
     Not(in = ngOut, out = nng);
     Not(in = zrOut, out = nzr);
-    And(a = instruction[15], b = instruction[1], out = jgt);
+    And(a = instruction[15], b = instruction[0], out = jgt);
     And(a = nng, b = nzr, out = nngnzr);
     And(a = jgt, b = nzr, out = load1);
 
-    And(a = instruction[15], b = instruction[2], out = jeq);
+    And(a = instruction[15], b = instruction[1], out = jeq);
     And(a = jeq, b = zrOut, out = load2);
 
-    And(a = instruction[15], b = instruction[3], out = jlt);
+    And(a = instruction[15], b = instruction[2], out = jlt);
     And(a = jlt, b = ngOut, out = load3);
 
     Or(a = load1, b = load2, out = topOr);
