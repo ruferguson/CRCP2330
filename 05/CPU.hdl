@@ -43,5 +43,8 @@ CHIP CPU {
     Mux16(a = instruction, b = instruction, sel = notFirst, out = topMuxOut);
 
     Or(a = notFirst, b = instruction[0], out = insertA);
+    ARegister(in = topMuxOut, load = insertA, out = A, out[0..14] = addressM);
+
+    And(a = instruction[15], b = instruction[0], out = insertD);
 
 }
