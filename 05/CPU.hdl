@@ -40,7 +40,7 @@ CHIP CPU {
 
     PARTS:
     Not(in = instruction[15], out = notFirst);
-    Mux16(a = instruction, b = instruction, sel = notFirst, out = topMuxOut);
+    Mux16(a = aluOut, b = instruction, sel = notFirst, out = topMuxOut);
 
     Or(a = notFirst, b = instruction[5], out = insertA);
     ARegister(in = topMuxOut, load = insertA, out = A, out[0..14] = addressM);
@@ -49,9 +49,9 @@ CHIP CPU {
     Mux16(a = instruction, b = inM, sel = AMSelect, out = AM);
 
     And(a = instruction[15], b = instruction[4], out = insertD);
-    DRegister(in = instruction, load = insertD, out = D);
+    DRegister(in = aluOut, load = insertD, out = D);
 
-    ALU(x = A, y = D, zx = instruction[0], nx = instruction[1], zy = instruction[2], ny = instruction[3], f = instruction[4], no = instruction[5], out = aluOut, zr = zrOut, ng = ngOut);
+    ALU(x = A, y = AM, zx = instruction[11], nx = instruction[10], zy = instruction[9], ny = instruction[8], f = instruction[7], no = instruction[6], out = aluOut, zr = zrOut, ng = ngOut);
 
     And(a = instruction[15], b = instruction[3], out = writeM);
 
