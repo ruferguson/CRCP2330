@@ -1,4 +1,7 @@
-/** Initializes a new Catch Fruit game and starts running it. */
+/** Initializes a new Catch Fruit game and starts running it. 
+* sh jackcompiler.sh ../projects/09/CatchFruit
+* sh VMEmulator.sh
+*/
 class Main {
     function void main() {
         var CatchFruitGame game;
