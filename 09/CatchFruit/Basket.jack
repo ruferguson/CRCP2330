@@ -51,7 +51,7 @@ class Basket {
     if ((xP + x) < 510) {
       do Screen.setColor(false);
       do Screen.drawRectangle(xP, yP, xP + 1, yP + y);
-      let x = x + 2;
+      let xP = xP + 2;
       do Screen.setColor(true);
       do Screen.drawRectangle((xP + x) - 1, yP, xP + x, yP + y);
     }
