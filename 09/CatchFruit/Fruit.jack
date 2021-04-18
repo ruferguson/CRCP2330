@@ -1,0 +1,48 @@
+/** Implements a rectangle. */
+
+class Fruit {
+	field int xP, yP; // location of the fruit's top-left corner
+  field int x, y; // x and y size of this fruit
+
+  /** Constructs a new Fruit with a given location and size. */
+  constructor Fruit new(int xPos, int yPos, int xSize, int ySize) {
+    let xP = xPos;
+    let yP = yPos;
+    let x = xSize;
+    let y = ySize;
+    do draw();
+    return this;
+  }
+
+  /** Disposes this fruit. */
+  method void dispose() {
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  /** Draws the fruit on the screen. */
+  method void draw() {
+    do Screen.setColor(true);
+    do Screen.drawRectangle(xP, yP, x, y);
+    return;
+  }
+
+  /** Erases the fruit from the screen. */
+  method void erase() {
+    do Screen.setColor(false);
+    do Screen.drawRectangle(xP, yP, x, y);
+    return;
+  }
+
+  /** Moves the fruit down by 2 pixels. */
+  method void fall() {
+    if ((yP + y) < 254) {
+      do Screen.setColor(false);
+      do Screen.drawRectangle(xP, yP, xP + x, yP + 1);
+      let yP = yP + 2;
+      do Screen.setColor(true);
+      do Screen.drawRectangle(xP, (yP + y) - 1, xP + x, yP + y);
+    }
+    return;
+  }
+}

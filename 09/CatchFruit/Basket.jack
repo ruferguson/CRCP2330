@@ -1,0 +1,61 @@
+/** Implements a basket. */
+
+class Basket {
+  field int xP, yP; // location of the basket's top-left corner
+  field int x, y; // x and y size of this basket
+
+  /** Constructs a new basket with a given location and size. */
+  constructor Basket new(int xPos, int yPos, int xSize, int ySize) {
+    let xP = xPos;
+    let yP = yPos;
+    let x = xSize;
+    let y = ySize;
+    do draw();
+    return this;
+  }
+
+  /** Disposes this basket. */
+  method void dispose() {
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  /** Draws the basket on the screen. */
+  method void draw() {
+    do Screen.setColor(true);
+    do Screen.drawRectangle(xP, yP, x, y);
+    return;
+  }
+
+  /** Erases the basket from the screen. */
+  method void erase() {
+    do Screen.setColor(false);
+    do Screen.drawRectangle(xP, yP, x, y);
+    return;
+  }
+
+  /** Moves the square left by 2 pixels. */
+  method void moveLeft() {
+    if (xP > 1) {
+      do Screen.setColor(false);
+      do Screen.drawRectangle((xP + x) - 1, yP, xP + x, yP + y);
+      let x = x - 2;
+      do Screen.setColor(true);
+      do Screen.drawRectangle(xP, yP, xP + 1, yP + y);
+    }
+    return;
+   }
+
+   /** Moves the square right by 2 pixels. */
+   method void moveRight() {
+    if ((xP + x) < 510) {
+      do Screen.setColor(false);
+      do Screen.drawRectangle(xP, yP, xP + 1, yP + y);
+      let x = x + 2;
+      do Screen.setColor(true);
+      do Screen.drawRectangle((xP + x) - 1, yP, xP + x, yP + y);
+    }
+    return;
+   }
+
+}
