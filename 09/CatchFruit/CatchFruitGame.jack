@@ -1,0 +1,21 @@
+/**
+ * Implements the Catch Fruit game.
+ * This simple game allows the user to move a black rectangle (basket) around to catch falling squares (fruit).
+ * The 'q' key is used to quit the game.
+ */
+
+class CatchFruitGame {
+    field Basket basket; // the basket of this game
+    field int direction; // the basket's current direction: 
+                        // 0=none, 1=left, 2=right
+
+    /** Constructs a new Catch Fruit Game. */
+   	constructor CatchFruitGame new() {
+      // Creates a 30 by 30 pixels Basket and positions it at the top-left
+      // of the screen.
+      let basket = Basket.new(0, 0, 30);
+      let direction = 0;  // initial state is no movement
+      return this;
+   }
+
+}

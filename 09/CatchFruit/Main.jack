@@ -1,0 +1,10 @@
+/** Initializes a new Catch Fruit game and starts running it. */
+class Main {
+    function void main() {
+        var CatchFruitGame game;
+        let game = CatchFruitGame.new();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}
