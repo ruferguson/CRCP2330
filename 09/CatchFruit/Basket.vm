@@ -33,7 +33,11 @@ pop temp 0
 push this 0
 push this 1
 push this 2
+push this 0
+add
 push this 3
+push this 1
+add
 call Screen.drawRectangle 4
 pop temp 0
 push constant 0
@@ -78,10 +82,10 @@ push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
-push this 2
+push this 0
 push constant 2
 sub
-pop this 2
+pop this 0
 push constant 0
 not
 call Screen.setColor 1

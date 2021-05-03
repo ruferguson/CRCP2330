@@ -23,7 +23,7 @@ class Basket {
   /** Draws the basket on the screen. */
   method void draw() {
     do Screen.setColor(true);
-    do Screen.drawRectangle(xP, yP, x, y);
+    do Screen.drawRectangle(xP, yP, x + xP, y + yP);
     return;
   }
 
@@ -39,7 +39,7 @@ class Basket {
     if (xP > 1) {
       do Screen.setColor(false);
       do Screen.drawRectangle((xP + x) - 1, yP, xP + x, yP + y);
-      let x = x - 2;
+      let xP = xP - 2;
       do Screen.setColor(true);
       do Screen.drawRectangle(xP, yP, xP + 1, yP + y);
     }

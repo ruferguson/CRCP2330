@@ -13,11 +13,11 @@ class CatchFruitGame {
     /** Constructs a new Catch Fruit Game. */
    	constructor CatchFruitGame new() {
       // Creates a 30 by 30 pixels Basket and positions it at the bottom of the screen.
-      let basket = Basket.new(0, 0, 30, 5);
+      let basket = Basket.new(0, 225, 30, 5);
       let direction = 0;  // initial state is no movement
       return this;
-   }
-	/** Disposes this game. */
+    }
+	  /** Disposes this game. */
     method void dispose() {
       do basket.dispose();
       do Memory.deAlloc(this);
