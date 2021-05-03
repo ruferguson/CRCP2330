@@ -12,8 +12,8 @@ class CatchFruitGame {
     field Array fruitArray;
     field int fruitLength;
     field int i, sum;
-    field int activeFruit;
 
+    field int activeFruit;
     field int timer;
 
     /** Constructs a new Catch Fruit Game. */
@@ -23,7 +23,6 @@ class CatchFruitGame {
       let direction = 0;  // initial state is no movement
 
       let activeFruit = 0;
-
       let timer = 0;
 
       let fruitLength = 1000;
@@ -77,27 +76,34 @@ class CatchFruitGame {
     	return;
     }
 
+
   method void dropFruit() {
-    while (i < activeFruit) {
-      do fruitArray[i].showFruit();
-      do fruitArray[i].drop();
-      //if (basket.intersect(fruitArray[i])) {
-       // fruitArray[i].caught();
+    var int j;
+    var Fruit curFruit;
+    let j = 0;
+    while (j < activeFruit) {
+      let curFruit = fruitArray[j];
+      do curFruit.fall();
+      //if (basket.intersect(fruitArray[j])) {
+       // fruitArray[j].caught();
        // score ++;
-    //  } //else if (fruitArray[i].intersectGrass() == true){
+    //  } else if (fruitArray[j].intersectGrass() == true){
        // decreaseHealth();
-      }
-      let i = i + 1;
+      //}
+      let j = j + 1;
     }
     return;
   }
 
   method void timer() {
     if (timer > 100) {
+      if (activeFruit < fruitLength) {
+        let activeFruit = activeFruit + 1;
+      }
       let timer = 0;
-
     }
-    timer ++;
+    let timer = timer + 1;
+    return;
   }
-  return;
+
 }
