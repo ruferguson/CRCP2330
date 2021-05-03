@@ -13,7 +13,7 @@ class CatchFruitGame {
     /** Constructs a new Catch Fruit Game. */
    	constructor CatchFruitGame new() {
       // Creates a 30 by 30 pixels Basket and positions it at the bottom of the screen.
-      let basket = Basket.new(120, 100, 30, 5);
+      let basket = Basket.new(0, 0, 30, 5);
       let direction = 0;  // initial state is no movement
       return this;
    }
@@ -26,8 +26,8 @@ class CatchFruitGame {
 
     /** Moves the basket in the current direction. */
     method void moveBasket() {
-       if (direction = 1) { do square.moveLeft(); }
-       if (direction = 2) { do square.moveRight(); }
+       if (direction = 1) { do basket.moveLeft(); }
+       if (direction = 2) { do basket.moveRight(); }
        do Sys.wait(5);  // delays the next movement
        return;
     }
