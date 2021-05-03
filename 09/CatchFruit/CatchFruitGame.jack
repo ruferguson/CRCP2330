@@ -12,7 +12,7 @@ class CatchFruitGame {
     field Array fruitArray;
     field int fruitLength;
     field int i, sum;
-    field int activeFruit = 0;
+    field int activeFruit;
 
     field int timer;
 
@@ -22,14 +22,15 @@ class CatchFruitGame {
       let basket = Basket.new(0, 225, 30, 5);
       let direction = 0;  // initial state is no movement
 
+      let activeFruit = 0;
+
       let timer = 0;
 
-      let length = 1000;
+      let fruitLength = 1000;
       let fruitArray = Array.new(fruitLength);
       let i = 0;
       while (i < fruitLength) {
-        let a[i] = Keyboard.readInt(”Enter a number: ”);
-        let sum = sum + a[i];
+        let fruitArray[i] = Fruit.new();
         let i = i + 1;
       }
       return this;
@@ -55,8 +56,8 @@ class CatchFruitGame {
       	var char key;  // the key currently pressed by the user
        	var boolean exit;
        	let exit = false;
-        
-        timer();
+
+        do timer();
 
        	while (~exit) {
        		// waits for a key to be pressed
@@ -77,16 +78,18 @@ class CatchFruitGame {
     }
 
   method void dropFruit() {
-    for (int i = 0; i < activeFruit; i++) {
-      fruitArray[i].showFruit();
-      fruitArray[i].drop();
-      if (basket.intersect(fruitArray[i])) {
-        fruitArray[i].caught();
-        score ++;
-      } //else if (fruitArray[i].intersectGrass() == true){
+    while (i < activeFruit) {
+      do fruitArray[i].showFruit();
+      do fruitArray[i].drop();
+      //if (basket.intersect(fruitArray[i])) {
+       // fruitArray[i].caught();
+       // score ++;
+    //  } //else if (fruitArray[i].intersectGrass() == true){
        // decreaseHealth();
       }
+      let i = i + 1;
     }
+    return;
   }
 
   method void timer() {
@@ -96,4 +99,5 @@ class CatchFruitGame {
     }
     timer ++;
   }
+  return;
 }

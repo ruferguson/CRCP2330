@@ -4,10 +4,10 @@ class Fruit {
 
   /** Constructs a new Fruit with a given location and size. */
   constructor Fruit new() {
-    let xP = randRange(500);
+    let xP = Random.randRange(500);
     let yP = 0;
-    let x = 1 + randRange(4);
-    let y = 1 + randRange(4);
+    let x = 1 + Random.randRange(4);
+    let y = 1 + Random.randRange(4);
     do draw();
     return this;
   }
