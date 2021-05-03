@@ -1,15 +1,13 @@
-/** Implements a rectangle. */
-
 class Fruit {
 	field int xP, yP; // location of the fruit's top-left corner
   field int x, y; // x and y size of this fruit
 
   /** Constructs a new Fruit with a given location and size. */
-  constructor Fruit new(int xPos, int yPos, int xSize, int ySize) {
-    let xP = xPos;
-    let yP = yPos;
-    let x = xSize;
-    let y = ySize;
+  constructor Fruit new() {
+    let xP = randRange(500);
+    let yP = 0;
+    let x = 1 + randRange(4);
+    let y = 1 + randRange(4);
     do draw();
     return this;
   }

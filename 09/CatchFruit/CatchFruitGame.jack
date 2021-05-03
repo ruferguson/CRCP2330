@@ -14,6 +14,8 @@ class CatchFruitGame {
     field int i, sum;
     field int activeFruit = 0;
 
+    field int timer;
+
     /** Constructs a new Catch Fruit Game. */
    	constructor CatchFruitGame new() {
       // Creates a 30 by 30 pixels Basket and positions it at the bottom of the screen.
@@ -44,7 +46,7 @@ class CatchFruitGame {
     method void moveBasket() {
        if (direction = 1) { do basket.moveLeft(); }
        if (direction = 2) { do basket.moveRight(); }
-       do Sys.wait(5);  // delays the next movement
+       do Sys.wait(2);  // delays the next movement
        return;
     }
 
@@ -53,7 +55,9 @@ class CatchFruitGame {
       	var char key;  // the key currently pressed by the user
        	var boolean exit;
        	let exit = false;
-      
+        
+        timer();
+
        	while (~exit) {
        		// waits for a key to be pressed
        		while (key = 0) {
@@ -86,6 +90,10 @@ class CatchFruitGame {
   }
 
   method void timer() {
-    
+    if (timer > 100) {
+      let timer = 0;
+
+    }
+    timer ++;
   }
 }
