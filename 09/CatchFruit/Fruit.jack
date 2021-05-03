@@ -23,14 +23,14 @@ class Fruit {
   /** Draws the fruit on the screen. */
   method void draw() {
     do Screen.setColor(true);
-    do Screen.drawRectangle(xP, yP, x, y);
+    do Screen.drawRectangle(xP, yP, x + xP, y + yP);
     return;
   }
 
   /** Erases the fruit from the screen. */
   method void erase() {
     do Screen.setColor(false);
-    do Screen.drawRectangle(xP, yP, x, y);
+    do Screen.drawRectangle(xP, yP, x + xP, y + yP);
     return;
   }
 
