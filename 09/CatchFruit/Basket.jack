@@ -37,8 +37,18 @@ class Basket {
   method boolean intersect(Fruit fruit) {
     var Fruit curFruit;
     let curFruit = fruit;
-    if (curFruit.getXP() > xP & curFruit.getXP() < xP + x & curFruit.getYP() > yP & curFruit.getYP() < yP + y) {    
-      return true;
+    //if (curFruit.getXP() > xP & curFruit.getXSize() < xP + x & curFruit.getYP() > yP & curFruit.getYSize() < yP + y) { 
+    if (curFruit.getXP() > xP) {
+      if (curFruit.getXSize() < xP + x) {
+        if (curFruit.getYP() > yP) {
+          if (curFruit.getYSize() < yP + y) {
+            return true;
+          }
+          return false;
+        }
+        return false;
+      } 
+      return false; 
     } else {
       return false;  
     }
@@ -57,7 +67,7 @@ class Basket {
    }
 
    /** Moves the square right by 2 pixels. */
-   method void moveRight() {
+  method void moveRight() {
     if ((xP + x) < 510) {
       do Screen.setColor(false);
       do Screen.drawRectangle(xP, yP, xP + 1, yP + y);

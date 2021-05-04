@@ -41,12 +41,12 @@ class Fruit {
 
   /** Moves the fruit down by 2 pixels. */
   method void fall() {
-    if ((yP + y) < 255) {
+    if ((yP + y) < 245) {
       do Screen.setColor(false);
-      do Screen.drawRectangle(xP, yP, xP + x, yP + 3);
+      do Screen.drawRectangle(xP, yP, xP + x, yP + y + 1);
       let yP = yP + 2;
       do Screen.setColor(true);
-      do Screen.drawRectangle(xP, (yP + y) - 3, xP + x, yP + y);
+      do Screen.drawRectangle(xP, yP, xP + x, yP + y);
     }
     return;
   }
@@ -57,5 +57,18 @@ class Fruit {
 
   method int getYP() {
     return yP;
+  }
+
+  method int getXSize() {
+    return x + xP;
+  }
+
+  method int getYSize() {
+    return y + yP;
+  }
+
+  method void resetFruit() {
+    let yP = 0;
+    return;
   }
 }

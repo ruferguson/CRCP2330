@@ -87,7 +87,7 @@ pop pointer 0
 push this 1
 push this 3
 add
-push constant 255
+push constant 245
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -101,7 +101,9 @@ push this 0
 push this 2
 add
 push this 1
-push constant 3
+push this 3
+add
+push constant 1
 add
 call Screen.drawRectangle 4
 pop temp 0
@@ -115,10 +117,6 @@ call Screen.setColor 1
 pop temp 0
 push this 0
 push this 1
-push this 3
-add
-push constant 3
-sub
 push this 0
 push this 2
 add
@@ -139,4 +137,25 @@ function Fruit.getYP 0
 push argument 0
 pop pointer 0
 push this 1
+return
+function Fruit.getXSize 0
+push argument 0
+pop pointer 0
+push this 2
+push this 0
+add
+return
+function Fruit.getYSize 0
+push argument 0
+pop pointer 0
+push this 3
+push this 1
+add
+return
+function Fruit.resetFruit 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 1
+push constant 0
 return

@@ -65,30 +65,45 @@ push local 0
 call Fruit.getXP 1
 push this 0
 gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push local 0
-call Fruit.getXP 1
-and
+call Fruit.getXSize 1
 push this 0
 lt
 push this 2
 add
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push local 0
 call Fruit.getYP 1
-and
 push this 1
 gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
 push local 0
-call Fruit.getYP 1
-and
+call Fruit.getYSize 1
 push this 1
 lt
 push this 3
 add
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
 push constant 0
 not
+return
+label IF_FALSE3
+push constant 0
+return
+label IF_FALSE2
+push constant 0
+return
+label IF_FALSE1
+push constant 0
 return
 goto IF_END0
 label IF_FALSE0
