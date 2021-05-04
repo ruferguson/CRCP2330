@@ -82,7 +82,7 @@ class CatchFruitGame {
     var int j;
     var Fruit curFruit;
     let j = 0;
-    
+
     do Sys.wait(5);
     do fruit.fall();
     if (fruit.intersectBasket(xp1, x1, yp1, y1)) {
@@ -105,7 +105,7 @@ class CatchFruitGame {
     do Output.moveCursor(1, 9);
     do Output.moveCursor(1, 8);
     do Output.printInt(score);
-    if (score > 2) {
+    if (score > 20) {
       do Screen.setColor(false);
       do Screen.drawRectangle(0, 0, 511, 254);
       do Output.moveCursor(10, 15);
