@@ -10,14 +10,15 @@ class CatchFruitGame {
     field int direction; // the basket's current direction: 
                         // 0=none, 1=left, 2=right
     field int score;
-    field String s;
-
+    field String s, m;
+    field int xp1, yp1, x1, y1;
     field int activeFruit;
+
+    field boolean exit;
 
     /** Constructs a new Catch Fruit Game. */
    	constructor CatchFruitGame new() {
-      // Creates a 30 by 30 pixels Basket and positions it at the bottom of the screen.
-      let basket = Basket.new(0, 225, 35, 4);
+      let basket = Basket.new(0, 225, 45, 5);
       let direction = 0;  // initial state is no movement
 
       let fruit = Fruit.new();
@@ -25,6 +26,9 @@ class CatchFruitGame {
       let activeFruit = 1;
       let score = 0;
       let s = " Score: ";
+      let m = " WINNER! Thank you for playing! ";
+
+      let exit = false;
 
       return this;
     }
@@ -48,12 +52,13 @@ class CatchFruitGame {
     /** Runs the game: handles the user's inputs and moves the basket accordingly */
     method void run() {
       	var char key;  // the key currently pressed by the user
-       	var boolean exit;
-       	let exit = false;
 
        	while (~exit) {
        		// waits for a key to be pressed
        		while (key = 0) {
+            do Output.moveCursor(1, 0);
+            do Output.printString(s);
+            do updateBasket();
             do dropFruit();
           	let key = Keyboard.keyPressed();
             let direction = 3;
@@ -71,32 +76,49 @@ class CatchFruitGame {
          	}
      	}
     	return;
-    }
+  }
 
   method void dropFruit() {
-    var int j, k;
+    var int j;
     var Fruit curFruit;
     let j = 0;
-    do Sys.wait(3);
+    
+    do Sys.wait(5);
     do fruit.fall();
-    if (fruit.intersectGrass()) {
-        do fruit.dispose();
-        let fruit = Fruit.new();
-        let score = score - 1;
-    }
-    if (basket.intersect(fruit)) {
+    if (fruit.intersectBasket(xp1, x1, yp1, y1)) {
+        do basket.draw();
         do fruit.dispose();
         let fruit = Fruit.new();
         let score = score + 1;
+    }
+    if (fruit.intersectGrass()) {
+        do basket.draw();
+        do fruit.dispose();
+        let fruit = Fruit.new();
+        let score = score - 1;
     }
     do showScore();
     return;
   }
 
   method void showScore() {
-    do Output.moveCursor(1, 0);
-    do Output.printString(s);
+    do Output.moveCursor(1, 9);
+    do Output.moveCursor(1, 8);
     do Output.printInt(score);
+    if (score > 2) {
+      do Screen.setColor(false);
+      do Screen.drawRectangle(0, 0, 511, 254);
+      do Output.moveCursor(10, 15);
+      do Output.printString(m);
+      let exit = true;
+    }
+    return;
+  }
+
+  method void updateBasket() {
+    let xp1 = basket.getXP();
+    let x1 = basket.getX();
+    let yp1 = basket.getYP();
     return;
   }
 }

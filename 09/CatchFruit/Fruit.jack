@@ -6,8 +6,8 @@ class Fruit {
   constructor Fruit new() {
     let xP = Random.randRange(500);
     let yP = 0;
-    let x = 2 + Random.randRange(5);
-    let y = 2 + Random.randRange(5);
+    let x = 3 + Random.randRange(5);
+    let y = 3 + Random.randRange(5);
     return this;
   }
 
@@ -25,11 +25,20 @@ class Fruit {
   }
 
   method boolean intersectGrass() {
-    if (yP > 230) {    
+    if (yP > 235) {    
       do erase();
       return true;
     } else {
       return false;  
+    }
+  }
+
+  method boolean intersectBasket(int xp1, int x1, int yp1, int y1) {
+    if ((yP > yp1) & (xP > xp1) & ((x + xP) < x1)) {
+      do erase();
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -44,27 +53,12 @@ class Fruit {
   method void fall() {
     if ((yP + y) < 245) {
       do Screen.setColor(false);
-      do Screen.drawRectangle(xP, yP, xP + x + 1, yP + y + 1);
-      let yP = yP + 2;
+      do Screen.drawRectangle(xP, yP, xP + x, yP + y + 1);
+      let yP = yP + 1;
       do Screen.setColor(true);
-      do Screen.drawRectangle(xP, yP, xP + x - 1, yP + y);
+      do Screen.drawRectangle(xP, yP, xP + x, yP + y);
     }
     return;
   }
 
-  method int getXP() {
-    return xP;
-  }
-
-  method int getYP() {
-    return yP;
-  }
-
-  method int getXSize() {
-    return x + xP;
-  }
-
-  method int getYSize() {
-    return y + yP;
-  }
 }
