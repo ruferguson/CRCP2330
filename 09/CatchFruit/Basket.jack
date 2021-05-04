@@ -35,13 +35,10 @@ class Basket {
   }
 
   method boolean intersect(Fruit fruit) {
-    var Fruit curFruit;
-    let curFruit = fruit;
-    //if (curFruit.getXP() > xP & curFruit.getXSize() < xP + x & curFruit.getYP() > yP & curFruit.getYSize() < yP + y) { 
-    if (curFruit.getXP() > xP) {
-      if (curFruit.getXSize() < xP + x) {
-        if (curFruit.getYP() > yP) {
-          if (curFruit.getYSize() < yP + y) {
+    if (fruit.getXP() > xP) {
+      if (fruit.getXSize() < xP + x) {
+        if (fruit.getYP() > yP) {
+          if (fruit.getYSize() < yP + y) {
             return true;
           }
           return false;
@@ -58,22 +55,22 @@ class Basket {
   method void moveLeft() {
     if (xP > 1) {
       do Screen.setColor(false);
-      do Screen.drawRectangle((xP + x) - 1, yP, xP + x, yP + y);
-      let xP = xP - 2;
+      do Screen.drawRectangle((xP + x) - 2, yP, xP + x, yP + y);
+      let xP = xP - 3;
       do Screen.setColor(true);
-      do Screen.drawRectangle(xP, yP, xP + 1, yP + y);
+      do Screen.drawRectangle(xP, yP, xP + 2, yP + y);
     }
     return;
    }
 
    /** Moves the square right by 2 pixels. */
   method void moveRight() {
-    if ((xP + x) < 510) {
+    if ((xP + x) < 500) {
       do Screen.setColor(false);
-      do Screen.drawRectangle(xP, yP, xP + 1, yP + y);
-      let xP = xP + 2;
+      do Screen.drawRectangle(xP, yP, xP + 2, yP + y);
+      let xP = xP + 3;
       do Screen.setColor(true);
-      do Screen.drawRectangle((xP + x) - 1, yP, xP + x, yP + y);
+      do Screen.drawRectangle((xP + x) - 2, yP, xP + x, yP + y);
     }
     return;
    }

@@ -6,8 +6,8 @@ class Fruit {
   constructor Fruit new() {
     let xP = Random.randRange(500);
     let yP = 0;
-    let x = 1 + Random.randRange(4);
-    let y = 1 + Random.randRange(4);
+    let x = 2 + Random.randRange(5);
+    let y = 2 + Random.randRange(5);
     return this;
   }
 
@@ -25,7 +25,8 @@ class Fruit {
   }
 
   method boolean intersectGrass() {
-    if (yP > 240) {    
+    if (yP > 230) {    
+      do erase();
       return true;
     } else {
       return false;  
@@ -43,10 +44,10 @@ class Fruit {
   method void fall() {
     if ((yP + y) < 245) {
       do Screen.setColor(false);
-      do Screen.drawRectangle(xP, yP, xP + x, yP + y + 1);
+      do Screen.drawRectangle(xP, yP, xP + x + 1, yP + y + 1);
       let yP = yP + 2;
       do Screen.setColor(true);
-      do Screen.drawRectangle(xP, yP, xP + x, yP + y);
+      do Screen.drawRectangle(xP, yP, xP + x - 1, yP + y);
     }
     return;
   }
