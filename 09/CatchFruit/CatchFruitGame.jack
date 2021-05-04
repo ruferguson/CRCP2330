@@ -46,7 +46,7 @@ class CatchFruitGame {
     method void moveBasket() {
        if (direction = 1) { do basket.moveLeft(); }
        if (direction = 2) { do basket.moveRight(); }
-       do Sys.wait(2);  // delays the next movement
+       do Sys.wait(6);  // delays the next movement
        return;
     }
 
@@ -56,11 +56,12 @@ class CatchFruitGame {
        	var boolean exit;
        	let exit = false;
 
-        do timer();
 
        	while (~exit) {
        		// waits for a key to be pressed
        		while (key = 0) {
+              do timer();
+              //do dropFruit();
             	let key = Keyboard.keyPressed();
             	do moveBasket();
       		}
@@ -72,7 +73,7 @@ class CatchFruitGame {
             	let key = Keyboard.keyPressed();
             	do moveBasket();
          	}
-     	} // while
+     	}
     	return;
     }
 
@@ -81,26 +82,34 @@ class CatchFruitGame {
     var int j;
     var Fruit curFruit;
     let j = 0;
+    do Sys.wait(1);  // delays the next movement
+    let activeFruit = activeFruit + 1;
     while (j < activeFruit) {
       let curFruit = fruitArray[j];
       do curFruit.fall();
-      //if (basket.intersect(fruitArray[j])) {
-       // fruitArray[j].caught();
-       // score ++;
-    //  } else if (fruitArray[j].intersectGrass() == true){
-       // decreaseHealth();
-      //}
+      do curFruit.draw();
+      //do Sys.wait(5);  // delays the next movement
+      if (basket.intersect(curFruit)) {
+        do curFruit.erase();
+        do curFruit.dispose();
+        // fruitArray[j].caught();
+        // score ++;
+      }
+      if (curFruit.intersectGrass()) {
+        do curFruit.erase();
+        do curFruit.dispose();
+      }
       let j = j + 1;
     }
     return;
   }
 
   method void timer() {
-    if (timer > 100) {
+    do dropFruit();
+    if (timer/2 = 1) {
       if (activeFruit < fruitLength) {
         let activeFruit = activeFruit + 1;
       }
-      let timer = 0;
     }
     let timer = timer + 1;
     return;

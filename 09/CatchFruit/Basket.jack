@@ -34,6 +34,16 @@ class Basket {
     return;
   }
 
+  method boolean intersect(Fruit fruit) {
+    var Fruit curFruit;
+    let curFruit = fruit;
+    if (curFruit.getXP() > xP & curFruit.getXP() < xP + x & curFruit.getYP() > yP & curFruit.getYP() < yP + y) {    
+      return true;
+    } else {
+      return false;  
+    }
+  }
+
   /** Moves the square left by 2 pixels. */
   method void moveLeft() {
     if (xP > 1) {

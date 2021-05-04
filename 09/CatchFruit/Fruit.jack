@@ -8,7 +8,6 @@ class Fruit {
     let yP = 0;
     let x = 1 + Random.randRange(4);
     let y = 1 + Random.randRange(4);
-    do draw();
     return this;
   }
 
@@ -25,6 +24,14 @@ class Fruit {
     return;
   }
 
+  method boolean intersectGrass() {
+    if (yP > 240) {    
+      return true;
+    } else {
+      return false;  
+    }
+  }
+
   /** Erases the fruit from the screen. */
   method void erase() {
     do Screen.setColor(false);
@@ -34,13 +41,21 @@ class Fruit {
 
   /** Moves the fruit down by 2 pixels. */
   method void fall() {
-    if ((yP + y) < 254) {
+    if ((yP + y) < 255) {
       do Screen.setColor(false);
-      do Screen.drawRectangle(xP, yP, xP + x, yP + 1);
+      do Screen.drawRectangle(xP, yP, xP + x, yP + 3);
       let yP = yP + 2;
       do Screen.setColor(true);
-      do Screen.drawRectangle(xP, (yP + y) - 1, xP + x, yP + y);
+      do Screen.drawRectangle(xP, (yP + y) - 3, xP + x, yP + y);
     }
     return;
+  }
+
+  method int getXP() {
+    return xP;
+  }
+
+  method int getYP() {
+    return yP;
   }
 }
