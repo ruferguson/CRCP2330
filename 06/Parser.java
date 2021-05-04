@@ -1,14 +1,20 @@
 import java.io.*;
+import java.io.Reader*;
 import java.util.*;
 
 public class Parser{
+	private BufferedReader reader;
 
-	public Parser(File filename) {
+	public Parser(File filestream) {
 		//opens input file/stream and gets ready to parse it
+
+		// file reader reads the file and buffered reader adds a buffer
+		this.reader = new BufferedReader(new FileReader(filestream));
 	}
 
 	public boolean hasMoreCommands() {
 		// are there more commands in the input
+		
 		return;
 	}
 
