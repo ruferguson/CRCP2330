@@ -4,9 +4,9 @@ import java.util.*;
 public class Assembler{
 
 	public static void main(String[] args) {
-		Hashtable<String, String> comp = new Hashtable<>();
-		Hashtable<String, String> dest = new Hashtable<>();
-		Hashtable<String, String> jump = new Hashtable<>();
+		HashMap<String, String> comp = new HashMap<>();
+		HashMap<String, String> dest = new HashMap<>();
+		HashMap<String, String> jump = new HashMap<>();
 
         comp.put("0", "0101010");
 		comp.put("1", "0111111");
