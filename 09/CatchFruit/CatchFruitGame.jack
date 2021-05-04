@@ -27,6 +27,7 @@ class CatchFruitGame {
 
       let activeFruit = 1;
       let score = 0;
+      let s = "Score: ";
 
       let fruitLength = 50;
       let fruitArray = Array.new(fruitLength);
@@ -85,7 +86,6 @@ class CatchFruitGame {
     	return;
     }
 
-
   method void dropFruit() {
     var int j, k;
     var Fruit curFruit;
@@ -102,29 +102,11 @@ class CatchFruitGame {
         let fruit = Fruit.new();
         let score = score - 1;
     }
-
-    /* while (j < activeFruit) {
-      let curFruit = fruitArray[j];
-      do curFruit.fall();
-      //do curFruit.draw();
-      if (basket.intersect(curFruit)) {
-        do curFruit.resetFruit();
-        let score = score + 1;
-      }
-      if (curFruit.intersectGrass()) {
-        let score = score - 1;
-      }
-      let j = j + 1;
-      while (activeFruit < fruitLength) {
-        let activeFruit = activeFruit + 1;
-      }
-    } */
     return;
   }
 
   method void showScore() {
     do Output.moveCursor(1, 0);
-    let s = "Score: ";
     do Output.printString(s);
     do Output.printInt(score);
     return;

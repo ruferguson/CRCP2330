@@ -66,9 +66,4 @@ class Fruit {
   method int getYSize() {
     return y + yP;
   }
-
-  method void resetFruit() {
-    let yP = 0;
-    return;
-  }
 }
