@@ -28,8 +28,6 @@ public class Parser{
 		return nextLine;
 	}
 
-
-
 	public boolean hasMoreCommands() {
 		// are there more commands in the input
 		return (this.nextLine != null);
@@ -39,7 +37,8 @@ public class Parser{
 		// reads the next command from 	the input and makes it the current command.
 		// should be called only if hasMoreCommands() is true.
 		// initially there is no current command.
-
+		this.curLine = this.nextLine;
+		this.nextLine = this.getNextLine();
 	}
 
 	public String commandType() {
@@ -47,6 +46,18 @@ public class Parser{
 		// - A_COMMAND for @Xxx where Xxx is either a symbol or a decimal number
 		// - C_COMMAND for dest=comp;jump
 		// - L_COMMAND (actually psuedo-command) for (Xxx) where Xxx is a symbol.
+		String indicator = this.currentLine.trim();
+		String a = "A_COMMAND";
+		String c = "C_COMMAND";
+		String l = "L_COMMAND";
+
+		if (indicator.startsWith("@")) {
+			return a;
+		} else if (indicator.startsWith("(") && indicator.endsWith(")")) {
+			return l;
+		} else {
+			return c;
+		}
 	}
 
 	public String symbol() {
