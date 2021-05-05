@@ -46,7 +46,7 @@ public class Parser{
 		// - A_COMMAND for @Xxx where Xxx is either a symbol or a decimal number
 		// - C_COMMAND for dest=comp;jump
 		// - L_COMMAND (actually psuedo-command) for (Xxx) where Xxx is a symbol.
-		String indicator = this.currentLine.trim();
+		String indicator = this.curLine.trim();
 		String a = "A_COMMAND";
 		String c = "C_COMMAND";
 		String l = "L_COMMAND";
@@ -63,7 +63,7 @@ public class Parser{
 	public String symbol() {
 		// Returns the symbol or decimal Xxx of the current command @Xxx or (Xxx).
 		// Should be called only when commandType() is A_COMMAND or L_COMMAND.
-		String symbolX = this.currentLine.trim();
+		String symbolX = this.curLine.trim();
 
 		if (this.commandType().equals("A_COMMAND")) {
 			return symbolX.substring(1);
@@ -72,18 +72,48 @@ public class Parser{
 		}
 	}
 
+	// format of C_COMMAND:	dest=comp;jump
+
 	public String dest() {
 		// Returns the dest mnemonic of the current C-command (8 possibilities).
 		// Should be called only when commandType() is C_COMMAND.
+		String trimmed = this.curLine.trim();
+		int destIndex = trimmed.indexOf("=");
+
+		if (destIndex == -1) {
+			return null;
+		} else {
+			return trimmed.substring(0, destIndex);
+		}
 	}
 
 	public String comp() {
 		// Returns the comp mnemonic of the current C-command (28 possibilities).
 		// Should be called only when commandType() is C_COMMAND.
+		String trimmed = this.curLine.trim();
+		int destIndex = trimmed.indexOf("=");
+		if (destIndex != -1) {
+			trimmed = trimmed.substring(destIndex + 1);
+		}
+		int compIndex = trimmed.indexOf(";");
+		if (compIndex == -1) {
+			return trimmed;
+		} else {
+			return trimmed.substring(0, compIndex);
+		}
+
 	}
 
 	public String jump() {
 		// Returns the jump mnemonic of the current C-command (8 possibilities).
 		// Should be called only when commandType() is C_COMMAND.
+		String trimmed = this.curLine.trim();
+		int compIndex = trimmed.indexOf(";");
+
+		if (compIndex == -1) {
+			return null;
+		} else {
+			return trimmed.substring(compIndex + 1);
+		}
 	}
 }
