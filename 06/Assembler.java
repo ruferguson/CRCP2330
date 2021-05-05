@@ -6,12 +6,26 @@ public class Assembler{
 	private BufferedWriter machineCode;
 	private Code encoder;
 
-	public static void Assembler(File source, File export) {
+	public static void main(String[] args) throws IOException {
+		Scanner filePath = new Scanner(System.in);
+		System.out.println("Enter file path: ");
+		String sourceName = filePath.nextLine(); 
+
+		Scanner exportPath = new Scanner(System.in);
+		System.out.println("Enter export path: ");
+		String exportName = exportPath.nextLine(); 
+
+		Assembler();
+	}
+
+	public Assembler(File source, File export) throws IOException {
 		this.assemblyCode = source;
 
-		this.machineCode = new BufferedWriter(new FileWriter(export));
+		FileWriter writer = new FileWriter(export);
+		this.machineCode = new BufferedWriter(writer);
 		this.encoder = new Code();
 	}
+
 	/*
 		HashMap<String, Integer> symbols = new HashMap<String, Integer>();
 
