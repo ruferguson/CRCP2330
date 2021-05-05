@@ -1,10 +1,19 @@
 import java.io.*;
 import java.util.*;
 
+/* /Users/ruferguson/Documents/nand2tetris/projects/06/add.asm
+   /Users/ruferguson/Documents/nand2tetris/projects/06/add.mine.hack
+
+   cd ../tools
+   sh Assembler.sh
+
+   cd ../projects
+*/
+
 public class Assembler{
-	private File assemblyCode;
-	private BufferedWriter machineCode;
-	private Code encoder;
+	private static File assemblyCode;
+	private static BufferedWriter machineCode;
+	private static Code encoder;
 
 	public static void main(String[] args) throws IOException {
 		Scanner filePath = new Scanner(System.in);
@@ -15,15 +24,22 @@ public class Assembler{
 		System.out.println("Enter export path: ");
 		String exportName = exportPath.nextLine(); 
 
-		Assembler();
+		File source = new File(sourceName);
+		File export = new File(exportName);
+
+		assembler(source, export);
 	}
 
-	public Assembler(File source, File export) throws IOException {
+	public static void assembler(File source, File export) throws IOException {
 		this.assemblyCode = source;
 
 		FileWriter writer = new FileWriter(export);
 		this.machineCode = new BufferedWriter(writer);
 		this.encoder = new Code();
+	}
+
+	private void parse() throws IOException {
+		Parser parser = new Parser(this.assemblyCode);
 	}
 
 	/*
