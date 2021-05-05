@@ -4,6 +4,10 @@ import java.util.*;
 public class Assembler{
 
 	public static void main(String[] args) {
+
+	}
+
+/* 
 		HashMap<String, String> comp = new HashMap<String, String>();
 		HashMap<String, String> dest = new HashMap<String, String>();
 		HashMap<String, String> jump = new HashMap<String, String>();
@@ -83,7 +87,6 @@ public class Assembler{
         symbols.put("R15",15);
         symbols.put("SCREEN",16384);
         symbols.put("KBD",24576);
-
-	}
+*/
 
 }
