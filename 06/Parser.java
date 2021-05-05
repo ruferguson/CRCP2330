@@ -4,18 +4,35 @@ import java.util.*;
 
 public class Parser{
 	private BufferedReader reader;
+	private String curLine;
+	private String nextLine;
 
 	public Parser(File filestream) {
 		//opens input file/stream and gets ready to parse it
 
 		// file reader reads the file and buffered reader adds a buffer
 		this.reader = new BufferedReader(new FileReader(filestream));
+		this.curLine = null;
+		this.nextLine = this.getNextLine();
 	}
+
+	private String getNextLine() {
+		String nextLine;
+
+		nextLine = this.reader.readline();
+
+		// conditional if the next line is empty or contains a comment
+		if (nextLine.trim().isEmpty() || nextLine.trim().startsWith("//")) {
+		}
+
+		return nextLine;
+	}
+
+
 
 	public boolean hasMoreCommands() {
 		// are there more commands in the input
-		
-		return;
+		return (this.nextLine != null);
 	}
 
 	public void advance() {
@@ -25,7 +42,7 @@ public class Parser{
 
 	}
 
-	public CommandType commandType() {
+	public String commandType() {
 		// Returns the type of the current command:
 		// - A_COMMAND for @Xxx where Xxx is either a symbol or a decimal number
 		// - C_COMMAND for dest=comp;jump
