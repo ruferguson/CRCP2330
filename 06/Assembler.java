@@ -2,9 +2,15 @@ import java.io.*;
 import java.util.*;
 
 public class Assembler{
+	private File assemblyCode;
+	private BufferedWriter machineCode;
+	private Code encoder;
 
-	public static void main(String[] args) {
+	public static void Assembler(File source, File export) {
+		this.assemblyCode = source;
 
+		this.machineCode = new BufferedWriter(new FileWriter(export));
+		this.encoder = new Code();
 	}
 
 /* 
