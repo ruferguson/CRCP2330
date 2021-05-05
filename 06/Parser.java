@@ -63,6 +63,13 @@ public class Parser{
 	public String symbol() {
 		// Returns the symbol or decimal Xxx of the current command @Xxx or (Xxx).
 		// Should be called only when commandType() is A_COMMAND or L_COMMAND.
+		String symbolX = this.currentLine.trim();
+
+		if (this.commandType().equals("A_COMMAND")) {
+			return symbolX.substring(1);
+		} else if (this.commandType().equals("L_COMMAND")) {
+			return symbolX.substring(1, symbolX.length() - 1);
+		}
 	}
 
 	public String dest() {
