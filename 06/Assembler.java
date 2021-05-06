@@ -40,6 +40,23 @@ public class Assembler{
 
 	private void parse() throws IOException {
 		Parser parser = new Parser(this.assemblyCode);
+		while (parser.hasMoreCommands()) {
+			parser.advance();
+
+			String commandType = parser.commandType();
+			String instruction = null;
+
+			if (commandType.equals("A_COMMAND")) {
+				// Format A-instruction
+				String symbol = parser.symbol();
+
+				String formattedNumber = this.encoder.formatNumberAsBinary(address);
+				return "0" + formattedNumber;
+				instruction = 
+			} else if ( ) {
+
+			}
+		}
 	}
 
 	/*

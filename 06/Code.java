@@ -77,4 +77,12 @@ public class Code {
 	public String jump(String m) {
 		return this.jumpMnem.get(m);
 	}
+
+	public String formatToBinary(String initial) {
+		int value = Integer.parseInt(initial);
+		String binaryNum = Integer.toBinaryString(value);
+		// fill empty whitespace with 0's
+		String formattedBinary = String.format("%15s", binaryNum).replace(' ', '0');
+		return formattedBinary;
+	}
 }
