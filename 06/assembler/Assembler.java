@@ -1,20 +1,11 @@
 import java.io.*;
 import java.util.*;
 
-/* 
-/Users/ruferguson/Documents/nand2tetris/projects/06/add/add.asm
-/Users/ruferguson/Documents/nand2tetris/projects/06/add.mine.hack
-
-   cd ../tools
-   sh Assembler.sh
-
-   cd ../projects
-*/
-
 public class Assembler{
 	private static File assemblyCode;
 	private static BufferedWriter machineCode;
 	private static Code encoder;
+	private static SymbolTable symbolTable;
 
 	public static void main(String[] args) throws IOException {
 		/*Scanner filePath = new Scanner(System.in);
@@ -29,12 +20,12 @@ public class Assembler{
 		File export = new File(exportName);
 		*/
 
-		File source = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/add/add.asm");
-		File export = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/add.mine.hack");
+		File source = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/rect/Rect.asm");
+		File export = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/Rect.mine.hack");
 
 		assembler(source, export);
 
-		parse();
+		twoPasses();
 	}
 
 	public static void assembler(File source, File export) throws IOException {
@@ -43,6 +34,27 @@ public class Assembler{
 		FileWriter writer = new FileWriter(export);
 		machineCode = new BufferedWriter(writer);
 		encoder = new Code();
+		symbolTable = new SymbolTable();
+	}
+
+	public static void twoPasses() throws IOException {
+		firstPass();
+		parse();
+	}
+
+	public static void firstPass() throws IOException {
+		Parser parser = new Parser(assemblyCode);
+		while (parser.hasMoreCommands()) {
+			parser.advance();
+			String commandType = parser.commandType();
+
+			if (commandType.equals("L_COMMAND")) {
+				String symbol = parser.symbol();
+				int address = symbolTable.getAddress(symbol);
+				symbolTable.addEntry(symbol, address);
+			} 
+		}
+		parser.close();
 	}
 
 	public static void parse() throws IOException {
