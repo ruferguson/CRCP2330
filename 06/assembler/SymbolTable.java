@@ -6,6 +6,10 @@ public class SymbolTable {
 
 	// creates a new empty symbol table
 	public SymbolTable() {
+		this.initialize();
+	}
+
+	public void initialize() {
 		this.symbols = new HashMap<String, Integer>();
 
 		// predefined symbols (p. 110)
@@ -36,16 +40,16 @@ public class SymbolTable {
 
 	// adds the pair (symbol, address) to the table
 	public void addEntry(String symbol, int address) {
-
+		this.symbols.put(symbol, address);
 	}
 
 	// does the symbol table contain the given symbol?
 	public Boolean contains(String symbol) {
-
+		return this.symbols.containsKey(symbol);
 	}
 
 	// returns the address associated with the symbol
 	public int getAddress(String symbol) {
-
+		return this.symbols.get(symbol);
 	}
 }

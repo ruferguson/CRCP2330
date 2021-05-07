@@ -7,9 +7,8 @@ public class Parser{
 	private String curLine;
 	private String nextLine;
 
+	//opens input file/stream and gets ready to parse it
 	public Parser(File filestream) throws IOException {
-		//opens input file/stream and gets ready to parse it
-
 		// file reader reads the file and buffered reader adds a buffer
 		this.reader = new BufferedReader(new FileReader(filestream));
 		this.curLine = null;
@@ -18,36 +17,33 @@ public class Parser{
 
 	private String getNextLine() throws IOException {
 		nextLine = this.reader.readLine();
-		System.out.println(nextLine);
-
 		if (nextLine == null) { return null; }
 		// conditional if the next line is empty or contains a comment	
 		while (nextLine.trim().isEmpty() || nextLine.trim().startsWith("//")) {
 			nextLine = this.reader.readLine();
-			System.out.println(nextLine);
 		}
 
 		return nextLine;
 	}
-
+	
+	// are there more commands in the input
 	public boolean hasMoreCommands() {
-		// are there more commands in the input
 		return (this.nextLine != null);
 	}
 
+	// reads the next command from 	the input and makes it the current command.
+	// should be called only if hasMoreCommands() is true.
+	// initially there is no current command.
 	public void advance() throws IOException {
-		// reads the next command from 	the input and makes it the current command.
-		// should be called only if hasMoreCommands() is true.
-		// initially there is no current command.
 		this.curLine = this.nextLine;
 		this.nextLine = this.getNextLine();
 	}
 
+	// Returns the type of the current command:
+	// - A_COMMAND for @Xxx where Xxx is either a symbol or a decimal number
+	// - C_COMMAND for dest=comp;jump
+	// - L_COMMAND (actually psuedo-command) for (Xxx) where Xxx is a symbol.
 	public String commandType() {
-		// Returns the type of the current command:
-		// - A_COMMAND for @Xxx where Xxx is either a symbol or a decimal number
-		// - C_COMMAND for dest=comp;jump
-		// - L_COMMAND (actually psuedo-command) for (Xxx) where Xxx is a symbol.
 		String indicator = this.curLine.trim();
 		String a = "A_COMMAND";
 		String c = "C_COMMAND";
@@ -62,9 +58,9 @@ public class Parser{
 		}
 	}
 
+	// Returns the symbol or decimal Xxx of the current command @Xxx or (Xxx).
+	// Should be called only when commandType() is A_COMMAND or L_COMMAND.
 	public String symbol() {
-		// Returns the symbol or decimal Xxx of the current command @Xxx or (Xxx).
-		// Should be called only when commandType() is A_COMMAND or L_COMMAND.
 		String symbolX = this.curLine.trim();
 
 		if (this.commandType().equals("A_COMMAND")) {
