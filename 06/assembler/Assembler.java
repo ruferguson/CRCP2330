@@ -8,7 +8,7 @@ public class Assembler{
 	private static SymbolTable symbolTable;
 
 	public static void main(String[] args) throws IOException {
-		/*Scanner filePath = new Scanner(System.in);
+		Scanner filePath = new Scanner(System.in);
 		System.out.println("Enter file path: ");
 		String sourceName = filePath.nextLine(); 
 
@@ -18,10 +18,6 @@ public class Assembler{
 
 		File source = new File(sourceName);
 		File export = new File(exportName);
-		*/
-
-		File source = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/max/Max.asm");
-		File export = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/Max.mine.hack");
 
 		assembler(source, export);
 
