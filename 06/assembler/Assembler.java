@@ -1,8 +1,9 @@
 import java.io.*;
 import java.util.*;
 
-/* /Users/ruferguson/Documents/nand2tetris/projects/06/add/add.asm
-   /Users/ruferguson/Documents/nand2tetris/projects/06/add.mine.hack
+/* 
+/Users/ruferguson/Documents/nand2tetris/projects/06/add/add.asm
+/Users/ruferguson/Documents/nand2tetris/projects/06/add.mine.hack
 
    cd ../tools
    sh Assembler.sh
