@@ -17,7 +17,7 @@ public class Assembler{
 	private static Code encoder;
 
 	public static void main(String[] args) throws IOException {
-		Scanner filePath = new Scanner(System.in);
+		/*Scanner filePath = new Scanner(System.in);
 		System.out.println("Enter file path: ");
 		String sourceName = filePath.nextLine(); 
 
@@ -27,6 +27,10 @@ public class Assembler{
 
 		File source = new File(sourceName);
 		File export = new File(exportName);
+		*/
+
+		File source = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/add/add.asm");
+		File export = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/add.mine.hack");
 
 		assembler(source, export);
 
@@ -50,6 +54,8 @@ public class Assembler{
 			String commandType = parser.commandType();
 			String instruction = null;
 
+			System.out.println(commandType);
+
 			if (commandType.equals("A_COMMAND")) {
 				// Format A-instruction
 				String symbol = parser.symbol();
@@ -66,11 +72,17 @@ public class Assembler{
 			}
 
 			if (!commandType.equals("L_COMMAND")) {
+				System.out.println("instruction: " + instruction);
 				// write to file
 				machineCode.write(instruction);
 				machineCode.newLine();
 			}
 		}
+
+		// release
+		parser.close();
+		machineCode.flush();
+		machineCode.close();
 	}
 }
 
