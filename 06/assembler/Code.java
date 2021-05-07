@@ -65,6 +65,7 @@ public class Code {
 
 	//  Returns the binary code of the destMnem mnemonic.
 	public String dest(String m) {
+		if (m == null || m.isEmpty()) { m = "NULL"; }
 		return this.destMnem.get(m);
 	}
 
@@ -75,6 +76,7 @@ public class Code {
 
 	//  Returns the binary code of the jumpMnem mnemonic.
 	public String jump(String m) {
+		if (m == null || m.isEmpty()) { m = "NULL"; }
 		return this.jumpMnem.get(m);
 	}
 
