@@ -1,5 +1,5 @@
 import java.io.*;
-import java.io.Reader*;
+import java.io.Reader.*;
 import java.util.*;
 
 public class Parser{
@@ -7,7 +7,7 @@ public class Parser{
 	private String curLine;
 	private String nextLine;
 
-	public Parser(File filestream) {
+	public Parser(File filestream) throws IOException {
 		//opens input file/stream and gets ready to parse it
 
 		// file reader reads the file and buffered reader adds a buffer
@@ -16,10 +16,9 @@ public class Parser{
 		this.nextLine = this.getNextLine();
 	}
 
-	private String getNextLine() {
-		String nextLine;
-
-		nextLine = this.reader.readline();
+	private String getNextLine() throws IOException {
+		String nextLine = this.reader.readLine();
+		System.out.println(nextLine);
 
 		// conditional if the next line is empty or contains a comment
 		if (nextLine.trim().isEmpty() || nextLine.trim().startsWith("//")) {
@@ -33,7 +32,7 @@ public class Parser{
 		return (this.nextLine != null);
 	}
 
-	public void advance() {
+	public void advance() throws IOException {
 		// reads the next command from 	the input and makes it the current command.
 		// should be called only if hasMoreCommands() is true.
 		// initially there is no current command.
@@ -69,6 +68,8 @@ public class Parser{
 			return symbolX.substring(1);
 		} else if (this.commandType().equals("L_COMMAND")) {
 			return symbolX.substring(1, symbolX.length() - 1);
+		} else {
+			return null;
 		}
 	}
 
@@ -114,6 +115,14 @@ public class Parser{
 			return null;
 		} else {
 			return trimmed.substring(compIndex + 1);
+		}
+	}
+
+	// Close and release
+	public void close() {
+		try {
+			this.reader.close();
+		} catch (IOException e) {
 		}
 	}
 }
