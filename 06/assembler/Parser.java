@@ -17,13 +17,16 @@ public class Parser{
 
 	private String getNextLine() throws IOException {
 		nextLine = this.reader.readLine();
-		System.out.println(nextLine);
 		if (nextLine == null) { return null; }
 		// conditional if the next line is empty or contains a comment	
 		while (nextLine.trim().isEmpty() || nextLine.trim().startsWith("//")) {
 			nextLine = this.reader.readLine();
 		}
-
+		// check for comments in line with code
+		int commentIndex = nextLine.indexOf("//");
+		if (commentIndex != -1) {
+			nextLine = nextLine.substring(0, commentIndex - 1);
+		}
 		return nextLine;
 	}
 	
@@ -102,7 +105,6 @@ public class Parser{
 		} else {
 			return trimmed.substring(0, compIndex);
 		}
-
 	}
 
 	public String jump() {

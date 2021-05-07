@@ -20,8 +20,8 @@ public class Assembler{
 		File export = new File(exportName);
 		*/
 
-		File source = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/rect/Rect.asm");
-		File export = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/Rect.mine.hack");
+		File source = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/max/Max.asm");
+		File export = new File("/Users/ruferguson/Documents/nand2tetris/projects/06/Max.mine.hack");
 
 		assembler(source, export);
 
@@ -39,9 +39,6 @@ public class Assembler{
 
 	public static void twoPasses() throws IOException {
 		firstPass();
-		System.out.println();
-		symbolTable.print();
-		System.out.println();
 		parse();
 	}
 
@@ -66,7 +63,6 @@ public class Assembler{
 
 		while (parser.hasMoreCommands()) {
 			parser.advance();
-
 			String commandType = parser.commandType();
 			String instruction = null;
 
