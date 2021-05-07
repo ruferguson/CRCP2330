@@ -53,13 +53,10 @@ public class Assembler{
 
 			if (commandType.equals("L_COMMAND")) {
 				String symbol = parser.symbol();
-				if (symbolTable.getAddress(symbol) == null) {
-					symbolTable.addEntry(symbol, symbolTable.getSize());
-				} else {
-					int address = symbolTable.getAddress(symbol);
-					symbolTable.addEntry(symbol, address);
-				}
-			} 
+				symbolTable.addEntry(symbol, symbolTable.getProgAdd());
+			} else {
+				symbolTable.incProgAdd();
+			}
 		}
 		parser.close();
 	}
@@ -78,13 +75,12 @@ public class Assembler{
 				String symbol = parser.symbol();
 				Character firstChar = symbol.charAt(0);
 				String address = null;
-
 				// if is a symbol
 				if (!Character.isDigit(firstChar)) {
-
 					// if symbol exists in symbol table
 					if (!symbolTable.containsKey(symbol)) {
-						symbolTable.addEntry(symbol, symbolTable.getSize());
+						symbolTable.addEntry(symbol, symbolTable.getDataAdd());
+						symbolTable.incDataAdd();
 					}
 					address = Integer.toString(symbolTable.getAddress(symbol));
 				} else {

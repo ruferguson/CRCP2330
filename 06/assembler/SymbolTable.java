@@ -3,10 +3,16 @@ import java.util.*;
 
 public class SymbolTable {
 	private HashMap<String, Integer> symbols;
+	private int progAdd;
+	private int dataAdd;
+	private int initDataAddress = 16; // after "R15"
+	private int initProgAddress = 0; // after 0
 
 	// creates a new empty symbol table
 	public SymbolTable() {
 		this.initialize();
+		this.progAdd = initProgAddress;
+		this.dataAdd = initDataAddress;
 	}
 
 	public void initialize() {
@@ -54,13 +60,29 @@ public class SymbolTable {
 		return address;
 	}
 
+	public void incProgAdd() {
+		this.progAdd++;
+	}
+
+	public void incDataAdd() {
+		this.dataAdd++;
+	}
+
+	public int getProgAdd() {
+		return this.progAdd;
+	}
+	
+	public int getDataAdd() {
+		return this.dataAdd;
+	}
+
 	public int getSize() {
 		return this.symbols.size();
 	}
 
 	public void print() {
 		for (String symbol : this.symbols.keySet()) {
-    		System.out.println(symbol);
+    		System.out.println(symbol + " " + getAddress(symbol));
 		}
 	}
 
