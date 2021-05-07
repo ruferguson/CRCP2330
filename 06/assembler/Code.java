@@ -8,9 +8,9 @@ public class Code {
 	private HashMap<String, String> jumpMnem;
 
 	public Code() {
-		this.compMnem = new HashMap<String, String>();
-		this.destMnem = new HashMap<String, String>();
-		this.jumpMnem = new HashMap<String, String>();
+		compMnem = new HashMap<String, String>();
+		destMnem = new HashMap<String, String>();
+		jumpMnem = new HashMap<String, String>();
 
 		// dest instructions (p.110)
         destMnem.put("NULL", "000");
@@ -66,18 +66,18 @@ public class Code {
 	//  Returns the binary code of the destMnem mnemonic.
 	public String dest(String m) {
 		if (m == null || m.isEmpty()) { m = "NULL"; }
-		return this.destMnem.get(m);
+		return destMnem.get(m);
 	}
 
 	//  Returns the binary code of the compMnem mnemonic.
 	public String comp(String m) {
-		return this.compMnem.get(m);
+		return compMnem.get(m);
 	}
 
 	//  Returns the binary code of the jumpMnem mnemonic.
 	public String jump(String m) {
 		if (m == null || m.isEmpty()) { m = "NULL"; }
-		return this.jumpMnem.get(m);
+		return jumpMnem.get(m);
 	}
 
 	public String formatToBinary(String initial) {

@@ -39,6 +39,9 @@ public class Assembler{
 
 	public static void twoPasses() throws IOException {
 		firstPass();
+		System.out.println();
+		symbolTable.print();
+		System.out.println();
 		parse();
 	}
 
@@ -50,8 +53,12 @@ public class Assembler{
 
 			if (commandType.equals("L_COMMAND")) {
 				String symbol = parser.symbol();
-				int address = symbolTable.getAddress(symbol);
-				symbolTable.addEntry(symbol, address);
+				if (symbolTable.getAddress(symbol) == null) {
+					symbolTable.addEntry(symbol, symbolTable.getSize());
+				} else {
+					int address = symbolTable.getAddress(symbol);
+					symbolTable.addEntry(symbol, address);
+				}
 			} 
 		}
 		parser.close();
@@ -69,7 +76,21 @@ public class Assembler{
 			if (commandType.equals("A_COMMAND")) {
 				// Format A-instruction
 				String symbol = parser.symbol();
-				String formattedNumber = encoder.formatToBinary(symbol);
+				Character firstChar = symbol.charAt(0);
+				String address = null;
+
+				// if is a symbol
+				if (!Character.isDigit(firstChar)) {
+
+					// if symbol exists in symbol table
+					if (!symbolTable.containsKey(symbol)) {
+						symbolTable.addEntry(symbol, symbolTable.getSize());
+					}
+					address = Integer.toString(symbolTable.getAddress(symbol));
+				} else {
+					address = symbol;
+				}
+				String formattedNumber = encoder.formatToBinary(address);
 				instruction = "0" + formattedNumber;
 			} else if (commandType.equals("C_COMMAND")) {
 				// Format C-instruction

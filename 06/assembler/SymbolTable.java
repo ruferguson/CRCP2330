@@ -49,7 +49,22 @@ public class SymbolTable {
 	}
 
 	// returns the address associated with the symbol
-	public int getAddress(String symbol) {
-		return this.symbols.get(symbol);
+	public Integer getAddress(String symbol) {
+		Integer address = this.symbols.get(symbol);
+		return address;
+	}
+
+	public int getSize() {
+		return this.symbols.size();
+	}
+
+	public void print() {
+		for (String symbol : this.symbols.keySet()) {
+    		System.out.println(symbol);
+		}
+	}
+
+	public boolean containsKey(String s) {
+		return this.symbols.containsKey(s);
 	}
 }

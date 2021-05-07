@@ -17,6 +17,7 @@ public class Parser{
 
 	private String getNextLine() throws IOException {
 		nextLine = this.reader.readLine();
+		System.out.println(nextLine);
 		if (nextLine == null) { return null; }
 		// conditional if the next line is empty or contains a comment	
 		while (nextLine.trim().isEmpty() || nextLine.trim().startsWith("//")) {
